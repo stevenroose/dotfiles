@@ -54,6 +54,8 @@ export PATH="$PATH":"/home/steven/bin"
 # add ~/.pub-cache/bin to PATH
 export PATH="$PATH":"~/.pub-cache/bin"
 
+# Dotfiles setup
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
