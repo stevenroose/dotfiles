@@ -1,0 +1,8 @@
+*.iml
+.idea/
+
+profile.cov
+
+# dart
+.pub/
+.packages

@@ -1,0 +1,12 @@
+[user]
+	name = Steven Roose
+	email = stevenroose@gmail.com
+[core]
+	editor = nvim
+	excludesfile = ~/.gitignore-global
+[color]
+	ui = true
+[url "git@github.com:san-lab/"]
+	insteadOf = https://github.com/san-lab/
+[pull]
+	rebase = true
