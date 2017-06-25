@@ -1,0 +1,9 @@
+
+# locale
+LANG=en_US.UTF-8
+LC_TIME=nl_BE.UTF-8
+LC_MEASUREMENTS=nl_BE.UTF-8
+
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+xinput set-prop 12 "libinput Natural Scrolling Enabled" 1
