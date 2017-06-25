@@ -71,9 +71,9 @@ awful.layout.layouts = {
     awful.layout.suit.spiral,
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
+    -- awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
+    -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
@@ -185,37 +185,11 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 -- {{{ Volume control
 -- https://github.com/deficient/volume-control
-
 -- load the volume widget code
 local volume_control = require("volume-control")
 -- define your volume control, using default settings:
 volumecfg = volume_control({})
-
--- Volume Keys
-awful.key({}, "XF86AudioLowerVolume", function ()
-	volumecfg:down()
-    --awful.util.spawn("amixer -q -D pulse sset Master 5%-", false)
-end)
-awful.key({}, "XF86AudioRaiseVolume", function ()
-	volumecfg:up()
-    --awful.util.spawn("amixer -q -D pulse sset Master 5%+", false)
-end)
-awful.key({}, "XF86AudioMute", function ()
-	volumecfg:toggle()
-    --awful.util.spawn("amixer -D pulse set Master 1+ toggle", false)
-end)
--- Media Keys
-awful.key({}, "XF86AudioPlay", function()
-    awful.spawn("cmus-remote -u")
-end)
-awful.key({}, "XF86AudioNext", function()
-    awful.spawn("cmus-remote -n")
-end)
-awful.key({}, "XF86AudioPrev", function()
-    awful.spawn("cmus-remote -r")
-end)
 -- }}}
-
 
 -- {{{ Battery widget
 local battery_widget = require("battery-widget")
@@ -384,7 +358,30 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+			
+	-- Volume Keys
+	awful.key({}, "XF86AudioLowerVolume", function ()
+		volumecfg:down()
+	end),
+	awful.key({}, "XF86AudioRaiseVolume", function ()
+		volumecfg:up()
+	end),
+	awful.key({}, "XF86AudioMute", function ()
+		volumecfg:toggle()
+	end),
+	-- Media Keys
+	awful.key({}, "XF86AudioPlay", function()
+		awful.spawn("cmus-remote -u")
+	end),
+	awful.key({}, "XF86AudioNext", function()
+		awful.spawn("cmus-remote -n")
+	end),
+	awful.key({}, "XF86AudioPrev", function()
+		awful.spawn("cmus-remote -r")
+	end)
+
+
 )
 
 clientkeys = gears.table.join(
