@@ -16,12 +16,12 @@ alias ccat="pygmentize -g"
 xmodmap ~/.Xmodmap
 
 # golang config
-export GOPATH=$HOME/gocode
-export PATH=$PATH:$GOPATH/bin
 alias gf="go fmt ./..."
 alias go="grc go"
 export GOROOT_BOOTSTRAP=/usr/lib/go
-source /home/steven/.gvm/scripts/gvm
+[[ -s "/home/steven/.gvm/scripts/gvm" ]] && source "/home/steven/.gvm/scripts/gvm"
+export GOPATH=$HOME/gocode
+export PATH=$PATH:$GOPATH/bin
 alias godeps="go list -f '{{ join .Deps  \"\n\"}}' ."
 alias godepsdot="go list -f '{{ join .Deps  "\n"}}' . | grep -F ."
 
@@ -33,6 +33,9 @@ alias changes="git diff --name-only HEAD | tr '\n' ' '"
 function checkoutpr() {
 	git pull -f origin pull/$1/head:pr$1
 }
+
+# SSH
+#ssh-agent zsh
 
 # kubernetes
 export KUBE_EDITOR="nano"
@@ -143,7 +146,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-[[ -s "/home/steven/.gvm/scripts/gvm" ]] && source "/home/steven/.gvm/scripts/gvm"
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
