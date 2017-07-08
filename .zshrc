@@ -8,7 +8,9 @@
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
-alias open=xdg-open
+function open() {
+	nohup xdg-open $1 &
+}
 alias v=nvim
 alias ccat="pygmentize -g"
 
