@@ -8,14 +8,8 @@
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
-function open() {
-	nohup xdg-open $1 &
-}
 alias v=nvim
 alias ccat="pygmentize -g"
-
-# xmodmap, should not be here actually but it doesnt work automatically :s
-xmodmap ~/.Xmodmap
 
 # golang config
 alias gf="go fmt ./..."
@@ -27,9 +21,6 @@ export PATH=$PATH:$GOPATH/bin
 alias godeps="go list -f '{{ join .Deps  \"\n\"}}' ."
 alias godepsdot="go list -f '{{ join .Deps  "\n"}}' . | grep -F ."
 
-# Git options
-# autocomplete
-source ~/.config/git-completion.zsh
 # list changed files since last commit (for use as gofmt -s ${changes})
 alias changes="git diff --name-only HEAD | tr '\n' ' '"
 function checkoutpr() {
@@ -148,6 +139,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+fpath=( $HOME/.zsh/completions $fpath )
+autoload -U compinit
+compinit
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
