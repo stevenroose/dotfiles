@@ -44,8 +44,8 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
--- beautiful.init(awful.util.get_themes_dir() .. "default/theme.lua")
-beautiful.init( awful.util.getdir("config") .. "/themes/awesome-solarized/dark/theme.lua" )
+beautiful.init(awful.util.get_themes_dir() .. "default/theme.lua")
+--beautiful.init( awful.util.getdir("config") .. "/themes/awesome-solarized/dark/theme.lua" )
 
 -- This is used later as the default terminal and editor to run.
 terminal = "termite"
@@ -268,8 +268,18 @@ globalkeys = gears.table.join(
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
               {description = "view next", group = "tag"}),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
-              {description = "go back", group = "tag"}),
+    --awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
+    --          {description = "go back", group = "tag"}),
+	awful.key({ modkey, }, "Escape", 
+	          	function ()
+					awful.spawn("slock")
+			    end,
+	          { description = "lock screen", group = "awesome"}),
+	awful.key({ modkey, "Shift", }, "Escape", 
+	          	function ()
+					awful.spawn("/home/steven/bin/suspend")
+			    end,
+	          { description = "suspend system", group = "awesome"}),
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -379,8 +389,17 @@ globalkeys = gears.table.join(
 	end),
 	awful.key({}, "XF86AudioPrev", function()
 		awful.spawn("cmus-remote -r")
-	end)
+	end),
 
+	-- Screenshots
+	awful.key({}, "Print", function()
+		awful.spawn("escrotum --clipboard ~/Pictures/screenshot-%Y-Ym-%d--%H-$M-%S.png",
+				    {description = "take screenshot", group = "awesome"})
+	end),
+	awful.key({ "Shift" }, "Print", function() 
+		awful.spawn("escrotum --clipboard --select ~/Pictures/screenshot-%Y-Ym-%d--%H-$M-%S.png",
+				    {description = "take screenshot of selection", group = "awesome"})
+	end)
 
 )
 
