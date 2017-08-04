@@ -26,6 +26,7 @@ alias changes="git diff --name-only HEAD | tr '\n' ' '"
 function checkoutpr() {
 	git pull -f origin pull/$1/head:pr$1
 }
+alias amenddate="git commit --amend --date=\"$(date -R)\""
 
 # SSH
 #ssh-agent zsh
@@ -38,6 +39,8 @@ export JAVA_HOME="/usr/lib/jvm/$(archlinux-java get)"
 
 # pretty json
 alias prettyjson='python -m json.tool'
+
+export EDITOR="nvim"
 
 # shortcutting
 function l() {
@@ -52,6 +55,8 @@ export PATH="$PATH":"~/.pub-cache/bin"
 
 # Dotfiles setup
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+export TERM=xterm-256color
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH

@@ -1,6 +1,25 @@
 set timeoutlen=0
 
 
+" plug-vim plugins
+call plug#begin('~/.local/share/nvim/plugged')
+
+Plug 'vifm/neovim-vifm'
+Plug 'lervag/vimtex'
+Plug 'tomlion/vim-solidity'
+Plug 'aklt/plantuml-syntax'
+Plug 'fatih/vim-go'
+Plug 'stephpy/vim-yaml'
+Plug 'in3d/vim-raml'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+
+Plug 'plasticboy/vim-markdown'
+call plug#end()
+
+
+
 set showcmd
 " Completion
 set completeopt+=noinsert
@@ -35,22 +54,11 @@ nnoremap <leader>b :<C-u>call <SID>build_go_files()<CR>
 " Disable deoplete for tex
 autocmd FileType tex  let b:deoplete_disable_auto_complete = 1
 
-" plug-vim plugins
-call plug#begin('~/.local/share/nvim/plugged')
+" ProtoBuf
+augroup filetype
+  au! BufRead,BufNewFile *.proto setfiletype proto
+augroup end
 
-Plug 'vifm/neovim-vifm'
-Plug 'lervag/vimtex'
-Plug 'tomlion/vim-solidity'
-Plug 'aklt/plantuml-syntax'
-Plug 'fatih/vim-go'
-Plug 'stephpy/vim-yaml'
-Plug 'in3d/vim-raml'
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-
-Plug 'plasticboy/vim-markdown'
-call plug#end()
 
 
 set number
