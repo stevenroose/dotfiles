@@ -1,0 +1,61 @@
+[general]
+# A folder where vdirsyncer can store some metadata about each pair.
+status_path = "~/.config/vdirsyncer/status/"
+
+# CARDDAV
+[pair fruux_carddav]
+# A `[pair <name>]` block defines two storages `a` and `b` that should be
+# synchronized. The definition of these storages follows in `[storage <name>]`
+# blocks. This is similar to accounts in OfflineIMAP.
+a = "fruux_carddav_local"
+b = "fruux_carddav_remote"
+
+# Synchronize all collections that can be found.
+# You need to run `vdirsyncer discover` if new calendars/addressbooks are added
+# on the server.
+
+collections = ["from a", "from b"]
+
+# Synchronize the "display name" property into a local file (~/.contacts/displayname).
+metadata = ["displayname"]
+
+# To resolve a conflict the following values are possible:
+#   `null` - abort when collisions occur (default)
+#   `"a wins"` - assume a's items to be more up-to-date
+#   `"b wins"` - assume b's items to be more up-to-date
+#conflict_resolution = null
+
+[storage fruux_carddav_local]
+# A storage references actual data on a remote server or on the local disk.
+# Similar to repositories in OfflineIMAP.
+type = "filesystem"
+path = "~/.contacts/fruux-default"
+fileext = ".vcf"
+
+[storage fruux_carddav_remote]
+type = "carddav"
+url = "https://dav.fruux.com/addressbooks/a3298232992/934e4ccc-0c3d-4c0c-a95d-6ed4856b6672/"
+username = "b3297476730"
+password.fetch = ["command", "cat", "/home/steven/.config/vdirsyncer/fruux_password"]
+
+
+
+# CALDAV
+[pair fruux_caldav]
+a = "fruux_caldav_local"
+b = "fruux_caldav_remote"
+collections = ["from a", "from b"]
+
+# Calendars also have a color property
+metadata = ["displayname", "color"]
+
+[storage fruux_caldav_local]
+type = "filesystem"
+path = "~/.calendars/fruux-default"
+fileext = ".ics"
+
+[storage fruux_caldav_remote]
+type = "caldav"
+url = "https://dav.fruux.com/calendars/a3298232992/9f11e8c9-bcf7-45d6-97f0-f7ab0716633b/"
+username = "b3297476730"
+password.fetch = ["command", "cat", "/home/steven/.config/vdirsyncer/fruux_password"]
