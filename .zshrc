@@ -150,4 +150,4 @@ compinit
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_CTRL_R_OPTS='--no-sort'
+#export FZF_CTRL_R_OPTS='--no-sort'

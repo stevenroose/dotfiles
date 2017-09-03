@@ -16,6 +16,11 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 Plug 'plasticboy/vim-markdown'
+
+" fzf search at ctrl-P
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+nnoremap <C-p> :FZF<CR>
+
 call plug#end()
 
 

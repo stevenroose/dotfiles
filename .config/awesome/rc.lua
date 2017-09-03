@@ -45,6 +45,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(awful.util.get_themes_dir() .. "default/theme.lua")
+beautiful.useless_gap = "5"
 --beautiful.init( awful.util.getdir("config") .. "/themes/awesome-solarized/dark/theme.lua" )
 
 -- This is used later as the default terminal and editor to run.
@@ -397,7 +398,7 @@ globalkeys = gears.table.join(
 				    {description = "take screenshot", group = "awesome"})
 	end),
 	awful.key({ "Shift" }, "Print", function() 
-		awful.spawn("escrotum --clipboard --select ~/Pictures/screenshot-%Y-Ym-%d--%H-$M-%S.png",
+		awful.spawn("escrotum --select ~/Pictures/screenshot-%Y-Ym-%d--%H-$M-%S.png",
 				    {description = "take screenshot of selection", group = "awesome"})
 	end)
 
