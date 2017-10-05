@@ -42,10 +42,7 @@ alias prettyjson='python -m json.tool'
 
 export EDITOR="nvim"
 
-# shortcutting
-function l() {
-	cd -P ~/l/$1
-}
+alias lr="ls -lahtr"
 
 # add ~/bin to PATH
 export PATH="$PATH":"/home/steven/bin"
