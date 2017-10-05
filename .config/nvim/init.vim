@@ -1,4 +1,6 @@
 set timeoutlen=0
+set ignorecase
+set smartcase
 
 
 " plug-vim plugins
@@ -11,6 +13,7 @@ Plug 'aklt/plantuml-syntax'
 Plug 'fatih/vim-go'
 Plug 'stephpy/vim-yaml'
 Plug 'in3d/vim-raml'
+Plug 'SirVer/ultisnips'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
@@ -19,10 +22,10 @@ Plug 'plasticboy/vim-markdown'
 
 " fzf search at ctrl-P
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-nnoremap <C-p> :FZF<CR>
 
 call plug#end()
 
+nnoremap <C-p> :FZF<CR>
 
 
 set showcmd
@@ -77,6 +80,15 @@ set formatoptions-=l
 " from alvaro 
 set clipboard=unnamedplus
 set mouse=a
+
+" Solidity
+autocmd Filetype solidity setlocal ts=4 sw=4 expandtab
+
+" BibTex
+autocmd Filetype bib setlocal ts=4 sw=4 expandtab
+
+" PlantUML
+autocmd Filetype plantuml setlocal ts=2 sw=2 expandtab
 
 augroup vimrc_autocmds
   autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
