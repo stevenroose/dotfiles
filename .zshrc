@@ -21,6 +21,8 @@ export PATH=$PATH:$GOPATH/bin
 alias godeps="go list -f '{{ join .Deps  \"\n\"}}' ."
 alias godepsdot="go list -f '{{ join .Deps  "\n"}}' . | grep -F ."
 
+alias tbtcctl="btcctl -C ~/.btcctl/tbtcctl.conf"
+
 # list changed files since last commit (for use as gofmt -s ${changes})
 alias changes="git diff --name-only HEAD | tr '\n' ' '"
 function checkoutpr() {

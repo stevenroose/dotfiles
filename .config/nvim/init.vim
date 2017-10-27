@@ -17,7 +17,7 @@ Plug 'SirVer/ultisnips'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
-
+Plug 'dart-lang/dart-vim-plugin'
 Plug 'plasticboy/vim-markdown'
 
 " fzf search at ctrl-P
