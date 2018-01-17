@@ -1,17 +1,17 @@
-Xft*dpi: 168
-Xft*antialias: true
-Xft*hinting: true
-Xft*rgba: rgb
-Xft*hintstyle: hintfull Xcursor.size: 40
+Xft.dpi: 168
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.hintstyle: hintfull Xcursor.size: 40
  
-URxvt*termName: xterm-256color
-URxvt*font: xft:DejaVu Sans Mono:pixelsize=24
-URxvt*scrollBar: false
-URxvt*scrollStyle: rxvt
-URxvt*internalBorder: 20
-URxvt*letterSpace: -2
-URxvt*iso14755: False  
-URxvt*iso14755_52: False
+URxvt.termName: xterm-256color
+URxvt.font: xft:DejaVu Sans Mono:pixelsize=24
+URxvt.scrollBar: false
+URxvt.scrollStyle: rxvt
+URxvt.internalBorder: 20
+URxvt.letterSpace: -2
+URxvt.iso14755: False  
+URxvt.iso14755_52: False
  
 #define S_base03        #002b36
 #define S_base02        #073642

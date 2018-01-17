@@ -193,6 +193,7 @@ volumecfg = volume_control({})
 -- }}}
 
 -- {{{ Battery widget
+-- https://github.com/deficient/battery-widget
 local battery_widget = require("battery-widget")
 battery = battery_widget({
 	adapter = "BAT0",
