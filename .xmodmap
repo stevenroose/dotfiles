@@ -1,0 +1,4 @@
+
+! maps caps lock to escape
+clear Lock
+keycode 66 = Escape NoSymbol Escape
