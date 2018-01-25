@@ -1,0 +1,2 @@
+#!/bin/sh
+nohup /opt/idea/bin/idea.sh &

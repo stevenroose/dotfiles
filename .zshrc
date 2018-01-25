@@ -13,13 +13,17 @@ alias ccat="pygmentize -g"
 
 # golang config
 alias gf="go fmt ./..."
-alias go="grc go"
 export GOROOT_BOOTSTRAP=/usr/lib/go
 [[ -s "/home/steven/.gvm/scripts/gvm" ]] && source "/home/steven/.gvm/scripts/gvm"
 export GOPATH=$HOME/gocode
 export PATH=$PATH:$GOPATH/bin
 alias godeps="go list -f '{{ join .Deps  \"\n\"}}' ."
 alias godepsdot="go list -f '{{ join .Deps  "\n"}}' . | grep -F ."
+alias aggo="ag --go --ignore-dir vendor/ "
+
+# Dart config
+export PATH=$PATH:$HOME/.pub-cache/bin
+export PATH=$PATH:$HOME/dartcode/flutter/bin
 
 alias tbtcctl="btcctl -C ~/.btcctl/tbtcctl.conf"
 
