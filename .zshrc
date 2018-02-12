@@ -151,6 +151,12 @@ fpath=( $HOME/.zsh/completions $fpath )
 autoload -U compinit
 compinit
 
+autoload -U bashcompinit && bashcompinit
+source ~/.bash_completion.d/*
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #export FZF_CTRL_R_OPTS='--no-sort'
+
+
+todo | cowsay -pn

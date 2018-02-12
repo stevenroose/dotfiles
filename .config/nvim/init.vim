@@ -12,6 +12,7 @@ Plug 'tomlion/vim-solidity'
 Plug 'aklt/plantuml-syntax'
 Plug 'fatih/vim-go'
 Plug 'stephpy/vim-yaml'
+Plug 'cespare/vim-toml'
 Plug 'in3d/vim-raml'
 Plug 'SirVer/ultisnips'
 
@@ -19,6 +20,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'plasticboy/vim-markdown'
+
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'miyakogi/vim-dartanalyzer'
 
 " fzf search at ctrl-P
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -89,6 +93,13 @@ autocmd Filetype bib setlocal ts=4 sw=4 expandtab
 
 " PlantUML
 autocmd Filetype plantuml setlocal ts=2 sw=2 expandtab
+
+" Dart
+autocmd Filetype dart setlocal ts=2 sw=2 expandtab
+
+" TOML
+autocmd Filetype toml setlocal ts=2 sw=2 expandtab
+
 
 augroup vimrc_autocmds
   autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929

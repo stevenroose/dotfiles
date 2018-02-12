@@ -1,0 +1,25 @@
+[calendars]
+
+[[Calendar]]
+path = ~/.calendars/fruux/Calendar
+color = auto
+
+[[Context]]
+path = ~/.calendars/fruux/Context
+color = auto
+
+[default]
+default_calendar = Calendar
+highlight_event_days = True
+print_new = event
+timedelta = 3d
+
+[highlight_days]
+method = fg
+
+[locale]
+timeformat = %H:%M
+dateformat = %d/%m
+longdateformat = %d/%m/%Y
+datetimeformat = %d/%m/%Y %H:%M
+longdatetimeformat = %d/%m/%Y %H:%M
