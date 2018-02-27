@@ -20,6 +20,7 @@ export PATH=$PATH:$GOPATH/bin
 alias godeps="go list -f '{{ join .Deps  \"\n\"}}' ."
 alias godepsdot="go list -f '{{ join .Deps  "\n"}}' . | grep -F ."
 alias aggo="ag --go --ignore-dir vendor/ "
+alias aggov="ag --go "
 
 # Dart config
 export PATH=$PATH:$HOME/.pub-cache/bin

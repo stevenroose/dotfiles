@@ -1,2 +1,5 @@
 [Default Applications]
 application/pdf=org.kde.okular.desktop
+
+x-scheme-handler/magnet=qbittorrent.desktop
+application/x-bittorrent=qbittorrent.desktop

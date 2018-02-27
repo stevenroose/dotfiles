@@ -23,11 +23,7 @@ collections = [
 # Synchronize the "display name" property into a local file (~/.contacts/displayname).
 metadata = ["displayname"]
 
-# To resolve a conflict the following values are possible:
-#   `null` - abort when collisions occur (default)
-#   `"a wins"` - assume a's items to be more up-to-date
-#   `"b wins"` - assume b's items to be more up-to-date
-#conflict_resolution = null
+conflict_resolution = "b wins"
 
 [storage fruux_carddav_local]
 # A storage references actual data on a remote server or on the local disk.
@@ -57,6 +53,8 @@ collections = [
 
 # Calendars also have a color property
 metadata = ["displayname", "color"]
+
+conflict_resolution = "b wins"
 
 [storage fruux_caldav_local]
 type = "filesystem"
