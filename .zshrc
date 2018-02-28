@@ -115,7 +115,8 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git archlinux golang)
+plugins=(git archlinux golang ssh-agent)
+zstyle :omz:plugins:ssh-agent identities
 
 source $ZSH/oh-my-zsh.sh
 
