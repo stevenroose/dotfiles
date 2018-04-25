@@ -31,7 +31,8 @@ alias tbtcctl="btcctl -C ~/.btcctl/tbtcctl.conf"
 # list changed files since last commit (for use as gofmt -s ${changes})
 alias changes="git diff --name-only HEAD | tr '\n' ' '"
 function checkoutpr() {
-	git pull -f origin pull/$1/head:pr$1
+	git fetch -f origin pull/$1/head:pr$1
+	git checkout pr$1
 }
 alias amenddate="git commit --amend --date=\"$(date -R)\""
 
@@ -161,4 +162,5 @@ source ~/.bash_completion.d/*
 #export FZF_CTRL_R_OPTS='--no-sort'
 
 
-todo | cowsay -pn
+# Print todos to reduce procrastination.
+todo

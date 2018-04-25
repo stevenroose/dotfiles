@@ -3,6 +3,7 @@
 [options]
 font = DejaVu Sans Mono 12
 scrollback_lines=100000
+urgent_on_bell = true
 
 # Solarized dark color scheme
 

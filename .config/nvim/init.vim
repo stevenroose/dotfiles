@@ -9,15 +9,19 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'vifm/neovim-vifm'
 Plug 'lervag/vimtex'
 Plug 'tomlion/vim-solidity'
-Plug 'aklt/plantuml-syntax'
+Plug 'aklt/plantuml-syntax' " pacaur -S plantuml
 Plug 'fatih/vim-go'
 Plug 'stephpy/vim-yaml'
 Plug 'cespare/vim-toml'
 Plug 'in3d/vim-raml'
 Plug 'SirVer/ultisnips'
 
+"Plug 'ludovicchabant/vim-gutentags' " needs pacman -S ctags
+
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'zchee/deoplete-jedi'
+
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'plasticboy/vim-markdown'
 
@@ -44,6 +48,7 @@ iabbrev todo TODO(stevenroose)
 
 
 set showcmd
+"
 " Completion
 set completeopt+=noinsert
 set completeopt+=noselect
@@ -55,6 +60,7 @@ let g:deoplete#sources#go#gocode_binary = '/home/steven/gocode/bin/gocode'
 let g:deoplete#sources#go#package_dot = 1
 let g:deoplete#sources#go#pointer = 1
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+
 " VimGo
 let g:go_fmt_command = "goimports"
 map <C-n> :cnext<CR>
@@ -85,16 +91,24 @@ augroup end
 
 
 set number
+set encoding=utf-8
 set tabstop=4
 set shiftwidth=4
 set autowrite
 
-autocmd bufreadpre *.tex setlocal textwidth=80
 set formatoptions+=t
 set formatoptions-=l
 " from alvaro 
 set clipboard=unnamedplus
 set mouse=a
+
+" Shorts for languages: ts=tabstop sw=shiftwidth
+
+" LaTex
+autocmd bufreadpre *.tex setlocal textwidth=80
+
+" Markdown
+autocmd bufreadpre *.md setlocal textwidth=80
 
 " Solidity
 autocmd Filetype solidity setlocal ts=4 sw=4 expandtab
@@ -107,6 +121,9 @@ autocmd Filetype plantuml setlocal ts=2 sw=2 expandtab
 
 " Dart
 autocmd Filetype dart setlocal ts=2 sw=2 expandtab
+
+" Python
+au BufNewFile,BufRead *.py set ts=4 softtabstop=4 sw=4 expandtab autoindent fileformat=unix
 
 " TOML
 autocmd Filetype toml setlocal ts=2 sw=2 expandtab

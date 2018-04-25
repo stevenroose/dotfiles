@@ -395,7 +395,7 @@ globalkeys = gears.table.join(
 
 	-- Screenshots
 	awful.key({}, "Print", function()
-		awful.spawn("escrotum --clipboard ~/Pictures/screenshot-%Y-Ym-%d--%H-$M-%S.png",
+		awful.spawn("escrotum ~/Pictures/screenshot-%Y-Ym-%d--%H-$M-%S.png",
 				    {description = "take screenshot", group = "awesome"})
 	end),
 	awful.key({ "Shift" }, "Print", function() 

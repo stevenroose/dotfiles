@@ -1,3 +1,4 @@
 #!/bin/env sh
+: ${1?Need a value}
 
 nohup xdg-open $1 &
