@@ -55,9 +55,6 @@ alias lr="ls -lahtr"
 # add ~/bin to PATH
 export PATH="$PATH":"/home/steven/bin"
 
-# add ~/.pub-cache/bin to PATH
-export PATH="$PATH":"~/.pub-cache/bin"
-
 # Dotfiles setup
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 

@@ -1,0 +1,12 @@
+#!/bin/bash
+: ${1?Need a value}
+
+args="-aP --exclude-from=/home/steven/bin/backupignorelist /home/steven/ $1"
+
+
+if [ "$2" == "do" ]; then
+	eval "rsync $args"
+else 
+	eval "rsync -n $args"
+fi
+

@@ -2,3 +2,4 @@
 : ${1?Need a value}
 
 sudo mount -o user,umask=0000 $1 /media/usb
+sudo chmod -R a+w /media/usb
