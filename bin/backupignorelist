@@ -16,6 +16,10 @@
 .pub
 .dart_tools
 
+# Golang
+gocode/pkg
+
+node_modules
 
 
 # rsync-homedir-excludes
