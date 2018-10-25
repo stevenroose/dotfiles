@@ -35,7 +35,7 @@ fileext = ".vcf"
 [storage fruux_carddav_remote]
 type = "carddav"
 url = "https://dav.fruux.com/addressbooks/a3298232992/"
-username = "b3297461448"
+username = "b3297450803"
 password.fetch = ["command", "cat", "/home/steven/.config/vdirsyncer/fruux_password"]
 
 
@@ -64,7 +64,7 @@ fileext = ".ics"
 [storage fruux_caldav_remote]
 type = "caldav"
 url = "https://dav.fruux.com/calendars/a3298232992/"
-username = "b3297461448"
+username = "b3297450803"
 password.fetch = ["command", "cat", "/home/steven/.config/vdirsyncer/fruux_password"]
 
 # Calendars:

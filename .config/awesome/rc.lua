@@ -195,11 +195,17 @@ volumecfg = volume_control({})
 -- {{{ Battery widget
 -- https://github.com/deficient/battery-widget
 local battery_widget = require("battery-widget")
-battery = battery_widget({
+battery1 = battery_widget({
 	adapter = "BAT0",
     ac_prefix = "Pow: ",
     battery_prefix = "Bat: ",
-    listen=true
+    listen = true
+})
+battery2 = battery_widget({
+	adapter = "BAT1",
+    ac_prefix = " ",
+    battery_prefix = " ",
+    listen = true
 })
 -- }}}
 
@@ -246,7 +252,8 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
 			volumecfg.widget,
-			battery.widget,
+			battery1.widget,
+			battery2.widget,
             mytextclock,
             s.mylayoutbox,
         },
@@ -395,11 +402,13 @@ globalkeys = gears.table.join(
 
 	-- Screenshots
 	awful.key({}, "Print", function()
-		awful.spawn("escrotum ~/Pictures/screenshot-%Y-%Ym-%d--%H-%M-%S.png",
+		--awful.spawn("escrotum ~/Pictures/screenshot-%Y-%Ym-%d--%H-%M-%S.png",
+		awful.spawn("screengrab --fullscreen",
 				    {description = "take screenshot", group = "awesome"})
 	end),
 	awful.key({ "Shift" }, "Print", function() 
-		awful.spawn("escrotum --select ~/Pictures/screenshot-%Y-%Ym-%d--%H-%M-%S.png",
+		--awful.spawn("escrotum --select ~/Pictures/screenshot-%Y-%Ym-%d--%H-%M-%S.png",
+		awful.spawn("screengrab --region",
 				    {description = "take screenshot of selection", group = "awesome"})
 	end)
 

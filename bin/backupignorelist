@@ -1,6 +1,7 @@
 
 # Personal additions
 
+/tmp/
 .glide
 .btcd
 .node-gyp
@@ -9,6 +10,11 @@
 .electron-gyp
 .ethash
 .bitcoin
+/.mozilla/firefox/
+*/chrome-user-data-debug/
+/.IntelliJIdea*/system/
+/.fzf/
+/code/*/*/build/
 
 #Dart
 .dartServer
@@ -17,9 +23,25 @@
 .dart_tools
 
 # Golang
-gocode/pkg
+/gocode/pkg
+/gocode/src/*/*/*/vendor/
+/gocode/src/*/*/*/*/vendor/
+/gocode/src/*/*/*/*/*/vendor/
+/gocode/src/*/*/*/*/*/*/vendor/
+/gocode/src/*/*/*/*/*/*/*/vendor/
+
+# Rust
+/.cargo
+/.rustup
+/code/rust/*/target/
+/code/rust/*/*/target/
+/code/rust/*/*/*/target/
 
 node_modules
+
+# Specific projects
+/blockstream/elements/depends/
+/code/bitcoin/depends/
 
 
 # rsync-homedir-excludes

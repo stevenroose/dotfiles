@@ -1,2 +1,2 @@
 #!/bin/sh
-xmodmap /home/steven/.xmodmap
+xmodmap /home/steven/.Xmodmap

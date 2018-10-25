@@ -1,6 +1,6 @@
 [user]
 	name = Steven Roose
-	email = stevenroose@gmail.com
+	email = steven@stevenroose.org
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore-global

@@ -19,8 +19,17 @@ export GOPATH=$HOME/gocode
 export PATH=$PATH:$GOPATH/bin
 alias godeps="go list -f '{{ join .Deps  \"\n\"}}' ."
 alias godepsdot="go list -f '{{ join .Deps  "\n"}}' . | grep -F ."
+
+# ag aliases
 alias aggo="ag --go --ignore-dir vendor/ "
 alias aggov="ag --go "
+alias agcpp="ag --cpp "
+alias agh="ag -G \"\.h$\" -B 10 "
+alias agr="ag --rust "
+
+# Rust
+export PATH=$PATH:$HOME/.cargo/bin
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # Dart config
 export PATH=$PATH:$HOME/.pub-cache/bin
@@ -160,4 +169,5 @@ source ~/.bash_completion.d/*
 
 
 # Print todos to reduce procrastination.
-todo
+#todo
+

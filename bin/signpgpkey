@@ -1,0 +1,4 @@
+#!/bin/sh
+
+gpg --sign-key $1 && \
+gpg --armor --export $1 | gpg --encrypt -r $1 --armor --output ~/tmp/$1-signedBy-stevenroose.asc

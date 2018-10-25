@@ -6,3 +6,6 @@ profile.cov
 # dart
 .pub/
 .packages
+
+# C++ tag files
+tags
