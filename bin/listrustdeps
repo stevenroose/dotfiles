@@ -1,0 +1,2 @@
+#!/bin/sh
+cargo metadata --format-version=1 | jq -r ".packages|map(.name)|.[]"

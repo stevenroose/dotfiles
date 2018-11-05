@@ -20,12 +20,12 @@ export PATH=$PATH:$GOPATH/bin
 alias godeps="go list -f '{{ join .Deps  \"\n\"}}' ."
 alias godepsdot="go list -f '{{ join .Deps  "\n"}}' . | grep -F ."
 
-# ag aliases
-alias aggo="ag --go --ignore-dir vendor/ "
-alias aggov="ag --go "
-alias agcpp="ag --cpp "
-alias agh="ag -G \"\.h$\" -B 10 "
-alias agr="ag --rust "
+# ripgrep aliases
+alias rggo="rg -tgo --ignore-file vendor/ "
+alias rggov="rg -tgo "
+alias rgcpp="rg -tcpp "
+alias rgh="rg -g '*.h' -B 10 "
+alias rgr="rg -trust "
 
 # Rust
 export PATH=$PATH:$HOME/.cargo/bin
