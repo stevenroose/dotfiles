@@ -12,6 +12,9 @@ require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 
+-- Lain
+local lain = require("lain")
+
 -- Theme handling library
 local beautiful = require("beautiful")
 
@@ -23,6 +26,9 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+
+-- For sharedtags plugin
+local sharedtags = require("sharedtags")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -81,6 +87,7 @@ awful.layout.layouts = {
     awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
+    lain.layout.centerwork,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
@@ -101,6 +108,21 @@ local function client_menu_toggle_fn()
         end
     end
 end
+-- }}}
+
+-- {{{ Tags
+local tags = sharedtags({
+--    { name = "H", layout = awful.layout.suit.floating },
+    { name = "1", layout = awful.layout.layouts[0] },
+    { name = "2", layout = awful.layout.layouts[0] },
+    { name = "3", layout = awful.layout.layouts[0] },
+    { name = "4", layout = awful.layout.layouts[0] },
+    { name = "5", layout = awful.layout.layouts[0] },
+    { name = "6", layout = awful.layout.layouts[0] },
+    { name = "7", layout = awful.layout.layouts[0] },
+    { name = "8", layout = awful.layout.layouts[0] },
+    { name = "9", layout = awful.layout.layouts[0] },
+})
 -- }}}
 
 -- {{{ Menu
@@ -222,7 +244,11 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    --awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+
+    -- Assign tags to the newly connected screen here,
+    -- if desired:
+    sharedtags.viewonly(tags[1], s)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -474,9 +500,11 @@ for i = 1, 9 do
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
                         local screen = awful.screen.focused()
-                        local tag = screen.tags[i]
+                        --local tag = screen.tags[i]
+                        local tag = tags[i]
                         if tag then
-                           tag:view_only()
+                           --tag:view_only()
+                           sharedtags.viewonly(tag, screen)
                         end
                   end,
                   {description = "view tag #"..i, group = "tag"}),
@@ -484,9 +512,11 @@ for i = 1, 9 do
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
                       local screen = awful.screen.focused()
-                      local tag = screen.tags[i]
+                      --local tag = screen.tags[i]
+                      local tag = tags[i]
                       if tag then
-                         awful.tag.viewtoggle(tag)
+                         --awful.tag.viewtoggle(tag)
+                         sharedtags.viewtoggle(tag, screen)
                       end
                   end,
                   {description = "toggle tag #" .. i, group = "tag"}),
@@ -494,7 +524,8 @@ for i = 1, 9 do
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
-                          local tag = client.focus.screen.tags[i]
+                          --local tag = client.focus.screen.tags[i]
+                          local tag = tags[i]
                           if tag then
                               client.focus:move_to_tag(tag)
                           end
@@ -514,6 +545,56 @@ for i = 1, 9 do
                   {description = "toggle focused client on tag #" .. i, group = "tag"})
     )
 end
+-- Add hotkeys for main tag
+--globalkeys = gears.table.join(globalkeys,
+--    -- View tag only.
+--    awful.key({ modkey }, "`",
+--              function ()
+--                    local screen = awful.screen.focused()
+--                    --local tag = screen.tags[i]
+--                    local tag = tags[0]
+--                    if tag then
+--                       --tag:view_only()
+--                       sharedtags.viewonly(tag, screen)
+--                    end
+--              end,
+--              {description = "view home tag", group = "tag"}),
+--    -- Toggle tag display.
+--    awful.key({ modkey, "Control" }, "`",
+--              function ()
+--                  local screen = awful.screen.focused()
+--                  --local tag = screen.tags[i]
+--                  local tag = tags[0]
+--                  if tag then
+--                     --awful.tag.viewtoggle(tag)
+--                     sharedtags.viewtoggle(tag, screen)
+--                  end
+--              end,
+--              {description = "toggle home tag", group = "tag"}),
+--    -- Move client to tag.
+--    awful.key({ modkey, "Shift" }, "`",
+--              function ()
+--                  if client.focus then
+--                      --local tag = client.focus.screen.tags[i]
+--                      local tag = tags[0]
+--                      if tag then
+--                          client.focus:move_to_tag(tag)
+--                      end
+--                 end
+--              end,
+--              {description = "move focused client to home tag", group = "tag"}),
+--    -- Toggle tag on focused client.
+--    awful.key({ modkey, "Control", "Shift" }, "`",
+--              function ()
+--                  if client.focus then
+--                      local tag = client.focus.screen.tags[i]
+--                      if tag then
+--                          client.focus:toggle_tag(tag)
+--                      end
+--                  end
+--              end,
+--              {description = "toggle focused client on home tag", group = "tag"})
+--)
 
 clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
@@ -576,6 +657,11 @@ awful.rules.rules = {
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
+
+    -- corrected for sharedtags
+    -- Set Firefox to always map on the tag named "2".
+    -- { rule = { class = "Firefox" },
+    --   properties = { tag = tags[2] } },
 }
 -- }}}
 
