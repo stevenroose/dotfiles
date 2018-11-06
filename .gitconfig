@@ -6,7 +6,7 @@
 	excludesfile = ~/.gitignore-global
 [color]
 	ui = true
-[url "git@github.com:san-lab/"]
-	insteadOf = https://github.com/san-lab/
 [pull]
 	rebase = true
+[url "ssh://github.com/"]
+	pushInsteadOf = https://github.com/
