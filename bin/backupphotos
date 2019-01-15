@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rsync -n --recursive --times --verbose --backup --delete --delete-excluded --perms --force /media/photos/ /mnt/ext0/photos/

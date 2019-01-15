@@ -21,15 +21,16 @@ alias godeps="go list -f '{{ join .Deps  \"\n\"}}' ."
 alias godepsdot="go list -f '{{ join .Deps  "\n"}}' . | grep -F ."
 
 # ripgrep aliases
-alias rggo="rg -tgo --ignore-file vendor/ "
+alias rggo="rg -tgo -g '!vendor/*' "
 alias rggov="rg -tgo "
 alias rgcpp="rg -tcpp "
 alias rgh="rg -g '*.h' -B 10 "
-alias rgr="rg -trust "
+alias rgr="rg -trust -g '!target/*' "
 
 # Rust
 export PATH=$PATH:$HOME/.cargo/bin
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+alias rtree="tree -I target"
 
 # Dart config
 export PATH=$PATH:$HOME/.pub-cache/bin
@@ -169,5 +170,5 @@ source ~/.bash_completion.d/*
 
 
 # Print todos to reduce procrastination.
-#todo
+todo
 

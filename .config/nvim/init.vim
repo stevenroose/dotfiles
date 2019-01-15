@@ -8,6 +8,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vifm/neovim-vifm'
+Plug 'w0rp/ale'
+Plug 'neomake/neomake'
 Plug 'lervag/vimtex'
 Plug 'tomlion/vim-solidity'
 Plug 'aklt/plantuml-syntax' " pacaur -S plantuml
@@ -107,6 +109,11 @@ set completeopt+=noselect
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_ignore_case = 1
 
+" Neomake
+" Automake hen writing a buffer (no delay), 
+" and on normal mode changes (after 750ms).
+call neomake#configure#automake('nw', 750)
+
 " Go completion
 let g:deoplete#sources#go#gocode_binary = '/home/steven/gocode/bin/gocode'
 let g:deoplete#sources#go#package_dot = 1
@@ -167,6 +174,9 @@ autocmd bufreadpre *.tex setlocal textwidth=80
 " Markdown
 autocmd bufreadpre *.md setlocal textwidth=80
 
+" Mediawiki
+"autocmd bufreadpre *.mediawiki setlocal textwidth=80
+
 " Solidity
 autocmd FileType solidity setlocal tabstop=4 shiftwidth=4 expandtab
 
@@ -190,7 +200,7 @@ autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
 
 " Rust
 autocmd FileType rust setlocal tabstop=4 shiftwidth=4 expandtab! textwidth=100
-let g:rustfmt_autosave = 1
+"let g:rustfmt_autosave = 1
 let g:racer_cmd = '/usr/bin/racer'
 autocmd FileType rust nmap <C-]> <plug>(rust-def)
 autocmd FileType rust nmap gs <Plug>(rust-def-split)
