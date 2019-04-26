@@ -12,7 +12,7 @@ Plug 'w0rp/ale'
 Plug 'neomake/neomake'
 Plug 'lervag/vimtex'
 Plug 'tomlion/vim-solidity'
-Plug 'aklt/plantuml-syntax' " pacaur -S plantuml
+Plug 'aklt/plantuml-syntax' " yay -S plantuml
 Plug 'fatih/vim-go'
 Plug 'stephpy/vim-yaml'
 Plug 'cespare/vim-toml'
@@ -20,17 +20,15 @@ Plug 'in3d/vim-raml'
 Plug 'SirVer/ultisnips'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
-
 
 Plug 'ludovicchabant/vim-gutentags' " needs pacman -S ctags
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
-"Plug 'sebastianmarkow/deoplete-rust'
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-jedi'
 
@@ -53,6 +51,15 @@ Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
+
+"let mapleader="\<SPACE>"
+map <Space> <Leader>
+" Remap semicolon to colon
+nnoremap ; :
+nnoremap : ;
+
+vnoremap <Leader>p "0p
+
 nnoremap <C-p> :FZF<CR>
 
 " Easier pane switching 
@@ -69,13 +76,7 @@ set splitright
 "  autocmd BufEnter * match OverLength /\%>81v.\+/
 "augroup END
 
-" Remap semicolon to colon
-nnoremap ; :
-nnoremap : ;
-
-
 let g:vim_markdown_folding_disabled = 1
-let mapleader=","
 
 " multi-cursor
 let g:multi_cursor_use_default_mapping=0
@@ -168,11 +169,11 @@ set mouse=a
 " Text
 autocmd FileType text setlocal textwidth=80 wrap
 
-" LaTex
-autocmd bufreadpre *.tex setlocal textwidth=80
-
 " Markdown
 autocmd bufreadpre *.md setlocal textwidth=80
+
+" LaTex
+autocmd bufreadpre *.tex setlocal textwidth=80
 
 " Mediawiki
 "autocmd bufreadpre *.mediawiki setlocal textwidth=80
@@ -200,12 +201,8 @@ autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
 
 " Rust
 autocmd FileType rust setlocal tabstop=4 shiftwidth=4 expandtab! textwidth=100
-"let g:rustfmt_autosave = 1
+let g:rustfmt_autosave = 0
 let g:racer_cmd = '/usr/bin/racer'
-autocmd FileType rust nmap <C-]> <plug>(rust-def)
-autocmd FileType rust nmap gs <Plug>(rust-def-split)
-autocmd FileType rust nmap gx <Plug>(rust-def-vertical)
-autocmd FileType rust nmap <leader>gd <Plug>(rust-doc)
 " deoplete
 let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
 let g:deoplete#sources#rust#rust_source_path='/usr/src/rust'

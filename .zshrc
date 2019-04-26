@@ -25,12 +25,13 @@ alias rggo="rg -tgo -g '!vendor/*' "
 alias rggov="rg -tgo "
 alias rgcpp="rg -tcpp "
 alias rgh="rg -g '*.h' -B 10 "
-alias rgr="rg -trust -g '!target/*' "
+alias rgr="rg -trust -g '!target/*' -g '!vendor/*' "
 
 # Rust
 export PATH=$PATH:$HOME/.cargo/bin
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-alias rtree="tree -I target"
+export RUST_BACKTRACE=1
+alias rtree="tree -I 'target|vendor|test*'"
 
 # Dart config
 export PATH=$PATH:$HOME/.pub-cache/bin
@@ -45,6 +46,7 @@ function checkoutpr() {
 	git checkout pr$1
 }
 alias amenddate="git commit --amend --date=\"$(date -R)\""
+alias recentbranches="git branch --sort=-committerdate | cat"
 
 # SSH
 #ssh-agent zsh
