@@ -51,7 +51,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
-
 "let mapleader="\<SPACE>"
 map <Space> <Leader>
 " Remap semicolon to colon

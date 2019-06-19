@@ -5,11 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
-alias v=nvim
-alias ccat="pygmentize -g"
+alias glp="git log -p "
 
 # golang config
 alias gf="go fmt ./..."
@@ -20,18 +18,10 @@ export PATH=$PATH:$GOPATH/bin
 alias godeps="go list -f '{{ join .Deps  \"\n\"}}' ."
 alias godepsdot="go list -f '{{ join .Deps  "\n"}}' . | grep -F ."
 
-# ripgrep aliases
-alias rggo="rg -tgo -g '!vendor/*' "
-alias rggov="rg -tgo "
-alias rgcpp="rg -tcpp "
-alias rgh="rg -g '*.h' -B 10 "
-alias rgr="rg -trust -g '!target/*' -g '!vendor/*' "
-
 # Rust
 export PATH=$PATH:$HOME/.cargo/bin
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export RUST_BACKTRACE=1
-alias rtree="tree -I 'target|vendor|test*'"
 
 # Dart config
 export PATH=$PATH:$HOME/.pub-cache/bin
@@ -61,8 +51,6 @@ export JAVA_HOME="/usr/lib/jvm/$(archlinux-java get)"
 alias prettyjson='python -m json.tool'
 
 export EDITOR="nvim"
-
-alias lr="ls -lahtr"
 
 # add ~/bin to PATH
 export PATH="$PATH":"/home/steven/bin"

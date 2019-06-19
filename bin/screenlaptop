@@ -6,4 +6,6 @@ xrandr \
 		--mode 2560x1440 \
 		--scale 1x1 \
 	--output DP2 \
+		--off \
+	--output HDMI2 \
 		--off

@@ -15,6 +15,10 @@
 /.IntelliJIdea*/system/
 /.fzf/
 /code/*/*/build/
+/.local/share/lutris/
+/.local/share/wineprefixes/
+/.local/share/nvim/plugged
+/Games/
 
 #Dart
 .dartServer
@@ -33,6 +37,8 @@
 # Rust
 /.cargo
 /.rustup
+target/debug/
+target/release/
 /code/rust/*/target/
 /code/rust/*/*/target/
 /code/rust/*/*/*/target/

@@ -1,0 +1,15 @@
+
+alias v=nvim
+alias ls='ls --color=auto'
+alias lr="ls -lahtr"
+
+alias ccat="pygmentize -g"
+
+# ripgrep aliases
+alias rggo="rg -tgo -g '!vendor/*' "
+alias rggov="rg -tgo "
+alias rgcpp="rg -tcpp "
+alias rgh="rg -g '*.h' -B 10 "
+alias rgr="rg -trust -g '!target/*' -g '!vendor/*' "
+
+alias rtree="tree -I 'target|vendor|test*'"

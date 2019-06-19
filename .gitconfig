@@ -13,5 +13,7 @@
 	pushInsteadOf = https://github.com/
 [branch "master"]
 	mergeoptions = --ff-only
+[commit]
+	gpgsign = true
 [tag]
 	gpgsign = true
