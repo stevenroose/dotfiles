@@ -1,8 +1,10 @@
 
 # Personal additions
 
+/software
+build-clang
+build
 /tmp/
-.glide
 .btcd
 .node-gyp
 .ipfs/blocks
@@ -14,7 +16,6 @@
 */chrome-user-data-debug/
 /.IntelliJIdea*/system/
 /.fzf/
-/code/*/*/build/
 /.local/share/lutris/
 /.local/share/wineprefixes/
 /.local/share/nvim/plugged
@@ -28,25 +29,22 @@
 
 # Golang
 /gocode/pkg
-/gocode/src/*/*/*/vendor/
-/gocode/src/*/*/*/*/vendor/
-/gocode/src/*/*/*/*/*/vendor/
-/gocode/src/*/*/*/*/*/*/vendor/
-/gocode/src/*/*/*/*/*/*/*/vendor/
+vendor/
+.glide
 
 # Rust
 /.cargo
 /.rustup
 target/debug/
 target/release/
-/code/rust/*/target/
-/code/rust/*/*/target/
-/code/rust/*/*/*/target/
+/code/rust/docs/
 
+# Node
 node_modules
 
 # Specific projects
 /blockstream/elements/depends/
+/blockstream/gdk/subprojects/
 /code/bitcoin/depends/
 
 

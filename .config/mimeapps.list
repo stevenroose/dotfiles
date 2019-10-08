@@ -160,9 +160,13 @@ x-scheme-handler/about=firefox.desktop
 x-scheme-handler/unknown=firefox.desktop
 image/jpeg=org.gnome.gThumb.desktop
 image/png=org.gnome.gThumb.desktop
+x-scheme-handler/sgnl=signal-desktop-beta.desktop
+inode/directory=pcmanfm-qt.desktop
+x-scheme-handler/discord-409416265891971072=discord-409416265891971072.desktop
 
 [Added Associations]
 application/octet-stream=lutris.desktop;
 application/rss+xml=net.sourceforge.liferea.desktop;
 image/jpeg=org.gnome.gThumb.desktop;
 image/png=org.gnome.gThumb.desktop;
+inode/directory=pcmanfm-qt.desktop;

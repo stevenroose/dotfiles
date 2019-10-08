@@ -27,11 +27,6 @@ Plug 'racer-rust/vim-racer'
 
 Plug 'ludovicchabant/vim-gutentags' " needs pacman -S ctags
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'zchee/deoplete-clang'
-Plug 'zchee/deoplete-jedi'
-
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'plasticboy/vim-markdown'
 
@@ -48,6 +43,8 @@ Plug 'airblade/vim-gitgutter'
 " status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'reedes/vim-pencil'
 
 call plug#end()
 
@@ -75,7 +72,6 @@ set splitright
 "  autocmd BufEnter * match OverLength /\%>81v.\+/
 "augroup END
 
-let g:vim_markdown_folding_disabled = 1
 
 " multi-cursor
 let g:multi_cursor_use_default_mapping=0
@@ -89,9 +85,15 @@ let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
+" syntax color scheme
+syntax enable
+set background=dark
+colorscheme solarized
+
 "set statusline = "%{FugitiveStatusline()}"
 let g:airline_theme = 'solarized'
-let g:airline_solarized_bg = 'dark'
+"let g:airline_solarized_bg = 'dark'
+let g:airline_solarized_bg = 'light'
 
 " Python plugins
 let g:python_host_prog  = '/usr/bin/python'
@@ -106,8 +108,6 @@ set showcmd
 " Completion
 set completeopt+=noinsert
 set completeopt+=noselect
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_ignore_case = 1
 
 " Neomake
 " Automake hen writing a buffer (no delay), 
@@ -115,10 +115,6 @@ let g:deoplete#enable_ignore_case = 1
 call neomake#configure#automake('nw', 750)
 
 " Go completion
-let g:deoplete#sources#go#gocode_binary = '/home/steven/gocode/bin/gocode'
-let g:deoplete#sources#go#package_dot = 1
-let g:deoplete#sources#go#pointer = 1
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
 " VimGo
 let g:go_fmt_command = "goimports"
@@ -138,9 +134,6 @@ function! s:build_go_files()
 endfunction
 " autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 nnoremap <leader>b :<C-u>call <SID>build_go_files()<CR>
-
-" Disable deoplete for tex
-autocmd FileType tex  let b:deoplete_disable_auto_complete = 1
 
 " ProtoBuf
 augroup filetype
@@ -165,11 +158,21 @@ set mouse=a
 
 " Shorts for languages: ts=tabstop sw=shiftwidth
 
-" Text
-autocmd FileType text setlocal textwidth=80 wrap
+" Pencil (for writing text)
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd,md call pencil#init({'wrap': 'soft'})
+  autocmd FileType text            call pencil#init()
+augroup END
+let g:pencil#textwidth = 80
+let g:vim_markdown_folding_disabled = 1
 
 " Markdown
-autocmd bufreadpre *.md setlocal textwidth=80
+"autocmd FileType markdown,mkd,md setlocal textwidth=80 expandtab
+autocmd FileType markdown,mkd,md setlocal columns=80
+
+" Text
+autocmd FileType text setlocal textwidth=80 wrap
 
 " LaTex
 autocmd bufreadpre *.tex setlocal textwidth=80
@@ -202,10 +205,6 @@ autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType rust setlocal tabstop=4 shiftwidth=4 expandtab! textwidth=100
 let g:rustfmt_autosave = 0
 let g:racer_cmd = '/usr/bin/racer'
-" deoplete
-let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/usr/src/rust'
-"autocmd FileType rust nmap <C-]> <plug>DeopleteRustGoToDefinitionDefault
 
 " ctags
 let g:gutentags_add_default_project_roots = 0

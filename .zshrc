@@ -41,6 +41,10 @@ alias recentbranches="git branch --sort=-committerdate | cat"
 # SSH
 #ssh-agent zsh
 
+# Blockstream
+export GDK_LOCATION=/home/steven/blockstream/gdk
+export GDK_TARGET=build-clang
+
 # kubernetes
 export KUBE_EDITOR="nano"
 
