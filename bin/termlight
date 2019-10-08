@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cat /home/steven/.config/termite/config-base > /home/steven/.config/termite/config
+cat /home/steven/.config/termite/solarized-light >> /home/steven/.config/termite/config
+sed -i 's/set background=dark/set background=light/' /home/steven/.config/nvim/init.vim

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+BRIGHTNESS="$1";
+if [ "$BRIGHTNESS" == "" ]; then
+	BRIGHTNESS="100";
+fi
+
+xbacklight -set $BRIGHTNESS
