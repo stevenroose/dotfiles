@@ -1,37 +1,62 @@
-set timeoutlen=0
+"set timeoutlen=0
 set ignorecase
 set smartcase
+set hidden
 
 
 " plug-vim plugins
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'editorconfig/editorconfig-vim'
-Plug 'vifm/neovim-vifm'
-Plug 'w0rp/ale'
-Plug 'neomake/neomake'
-Plug 'lervag/vimtex'
-Plug 'tomlion/vim-solidity'
-Plug 'aklt/plantuml-syntax' " yay -S plantuml
-Plug 'fatih/vim-go'
-Plug 'stephpy/vim-yaml'
-Plug 'cespare/vim-toml'
-Plug 'in3d/vim-raml'
-Plug 'SirVer/ultisnips'
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'terryma/vim-multiple-cursors'
-"Plug 'vim-syntastic/syntastic'
+" some core plugins
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround' " use: cs
+Plug 'tpope/vim-commentary' " use: gc
+Plug 'vim-scripts/ReplaceWithRegister' " use: gr
+"Plug 'christoomey/vim-titlecase' " use: gt
+Plug 'christoomey/vim-sort-motion' " use: gs
+Plug 'christoomey/vim-system-copy' " use: cp, cv
+Plug 'kana/vim-textobj-user' " enables following:
+Plug 'kana/vim-textobj-indent' " use: ai, ii
+Plug 'kana/vim-textobj-entire' " use: ae, ie
+Plug 'kana/vim-textobj-line' " use: ??
 
+" recognize .editorconfig files
+Plug 'editorconfig/editorconfig-vim'
+
+" async linting engine
+"Plug 'dense-analysis/ale'
+
+" async compile error engine
+Plug 'neomake/neomake'
+
+" latex
+Plug 'lervag/vimtex'
+
+" plantuml
+Plug 'aklt/plantuml-syntax' " yay -S plantuml
+
+" Go development
+Plug 'fatih/vim-go'
+
+" snippets
+Plug 'sirver/ultisnips'
+
+" multiple cursos support
+Plug 'terryma/vim-multiple-cursors'
+
+" Rust integration
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 
+" ctags integration
 Plug 'ludovicchabant/vim-gutentags' " needs pacman -S ctags
 
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'plasticboy/vim-markdown'
-
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'miyakogi/vim-dartanalyzer'
+" lsp clients
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
 " fzf search at ctrl-P
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -44,12 +69,14 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'reedes/vim-pencil'
+" Dart & Flutter
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
 
 call plug#end()
 
-"let mapleader="\<SPACE>"
-map <Space> <Leader>
+let mapleader="\<SPACE>"
+"map <Space> <Leader>
 " Remap semicolon to colon
 nnoremap ; :
 nnoremap : ;
@@ -65,12 +92,6 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
-
-
-"augroup vimrc_autocmds
-"  autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
-"  autocmd BufEnter * match OverLength /\%>81v.\+/
-"augroup END
 
 
 " multi-cursor
@@ -142,7 +163,7 @@ augroup end
 
 
 
-set number
+set number relativenumber
 set encoding=utf-8
 set tabstop=4
 set shiftwidth=4
@@ -156,26 +177,37 @@ set formatoptions-=l
 set clipboard=unnamedplus
 set mouse=a
 
+
+" lsp clients
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['/usr/bin/rustup', 'run', 'stable', 'rls'],
+	\ 'dart': ['/usr/bin/dart', '/opt/dart-sdk/bin/snapshots/analysis_server.dart.snapshot', '--lsp'],
+    \ }
+let g:LanguageClient_useVirtualText = 0
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+autocmd FileType dart nnoremap <C-]> :call LanguageClient#textDocument_definition()<CR>
+autocmd FileType rust nnoremap <C-]> :call LanguageClient#textDocument_definition()<CR>
+let g:deoplete#enable_at_startup = 1
+
 " Shorts for languages: ts=tabstop sw=shiftwidth
 
-" Pencil (for writing text)
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd,md call pencil#init({'wrap': 'soft'})
-  autocmd FileType text            call pencil#init()
-augroup END
-let g:pencil#textwidth = 80
-let g:vim_markdown_folding_disabled = 1
+" default use tabs
+set expandtab!
+
+" because stupid editorconfig thinks it's more important than my own config:
+let g:EditorConfig_exclude_patterns = ['fugitive://.\*', '*Makefile']
 
 " Markdown
-"autocmd FileType markdown,mkd,md setlocal textwidth=80 expandtab
-autocmd FileType markdown,mkd,md setlocal columns=80
+autocmd FileType markdown,mkd,md setlocal expandtab
+"autocmd FileType markdown,mkd,md setlocal columns=80
 
 " Text
-autocmd FileType text setlocal textwidth=80 wrap
+autocmd FileType text setlocal wrap
 
 " LaTex
-autocmd bufreadpre *.tex setlocal textwidth=80
+autocmd bufreadpre *.tex setlocal
 
 " Mediawiki
 "autocmd bufreadpre *.mediawiki setlocal textwidth=80
@@ -203,8 +235,16 @@ autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
 
 " Rust
 autocmd FileType rust setlocal tabstop=4 shiftwidth=4 expandtab! textwidth=100
+"au FileType rust nmap gd <Plug>(rust-def)
+"au FileType rust nmap gs <Plug>(rust-def-split)
+"au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 let g:rustfmt_autosave = 0
-let g:racer_cmd = '/usr/bin/racer'
+let g:racer_cmd = '/home/steven/.cargo/bin/racer'
+let g:racer_experimental_completer = 1
+
+" Makefile
+autocmd FileType make set noexpandtab
 
 " ctags
 let g:gutentags_add_default_project_roots = 0

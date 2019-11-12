@@ -20,6 +20,7 @@ alias godepsdot="go list -f '{{ join .Deps  "\n"}}' . | grep -F ."
 
 # Rust
 export PATH=$PATH:$HOME/.cargo/bin
+export CARGO_TARGET_DIR=/media/data/cargo-target
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export RUST_BACKTRACE=1
 

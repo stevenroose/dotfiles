@@ -2,7 +2,7 @@
 
 
 [options]
-font = DejaVu Sans Mono 8
+font = DejaVu Sans Mono 10
 scrollback_lines=100000
 urgent_on_bell = true
 
