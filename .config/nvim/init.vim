@@ -52,11 +52,13 @@ Plug 'racer-rust/vim-racer'
 Plug 'ludovicchabant/vim-gutentags' " needs pacman -S ctags
 
 " lsp clients
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " fzf search at ctrl-P
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -129,6 +131,7 @@ set showcmd
 " Completion
 set completeopt+=noinsert
 set completeopt+=noselect
+set completeopt+=menuone
 
 " Neomake
 " Automake hen writing a buffer (no delay), 
@@ -183,13 +186,22 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['/usr/bin/rustup', 'run', 'stable', 'rls'],
 	\ 'dart': ['/usr/bin/dart', '/opt/dart-sdk/bin/snapshots/analysis_server.dart.snapshot', '--lsp'],
     \ }
-let g:LanguageClient_useVirtualText = 0
+let g:LanguageClient_useVirtualText = "No"
+let g:LanguageClient_loggingFile =  expand('~/tmp/LanguageClient.log')
+let g:LanguageClient_serverStderr = expand('~/tmp/LanguageServer.log')
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-autocmd FileType dart nnoremap <C-]> :call LanguageClient#textDocument_definition()<CR>
-autocmd FileType rust nnoremap <C-]> :call LanguageClient#textDocument_definition()<CR>
-let g:deoplete#enable_at_startup = 1
+" first unmap C-] so that it uses gutentags in all other file types
+"autocmd FileType * silent! nunmap <C-]>
+"autocmd FileType dart silent! nunmap <Esc>
+"autocmd FileType rust,rs silent! nunmap <Esc>
+autocmd FileType dart nnoremap <C-[> :call LanguageClient#textDocument_definition()<CR>
+autocmd FileType rust,rs nnoremap <C-[> :call LanguageClient#textDocument_definition()<CR>
+
+" autocompletion
+"autocmd BufEnter * call ncm2#enable_for_buffer()
+"let g:deoplete#enable_at_startup = 1
 
 " Shorts for languages: ts=tabstop sw=shiftwidth
 
@@ -220,6 +232,7 @@ autocmd FileType bib setlocal tabstop=4 shiftwidth=4 expandtab
 
 " PlantUML
 autocmd FileType plantuml setlocal tabstop=2 shiftwidth=2 expandtab
+let g:plantuml_executable_script='plantuml -tsvg'
 
 " Dart
 autocmd FileType dart setlocal tabstop=2 shiftwidth=2 expandtab
@@ -252,3 +265,4 @@ let g:gutentags_project_root = ['tags']
 
 "This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
+

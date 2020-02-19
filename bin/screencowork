@@ -3,9 +3,11 @@
 
 doxmodmap
 
+#3840 x 2160
+		#--mode 2560x1440 \
 xrandr \
 	--output eDP1 \
-		--mode 2560x1440 \
+        --mode 2560x1440 \
 		--scale 0.875x0.875 \
 	--output DP2 \
 		--mode 2560x1440 \

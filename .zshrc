@@ -9,6 +9,8 @@ PS1='[\u@\h \W]\$ '
 
 alias glp="git log -p "
 
+export PATH=$PATH:/home/steven/.local/bin
+
 # golang config
 alias gf="go fmt ./..."
 export GOROOT_BOOTSTRAP=/usr/lib/go
@@ -37,7 +39,7 @@ function checkoutpr() {
 	git checkout pr$1
 }
 alias amenddate="git commit --amend --date=\"$(date -R)\""
-alias recentbranches="git branch --sort=-committerdate | cat"
+alias recentbranches="git branch --sort=committerdate | tail"
 
 # SSH
 #ssh-agent zsh

@@ -1,2 +1,5 @@
 #!/bin/sh
 xmodmap /home/steven/.Xmodmap
+
+xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
+xinput set-button-map "SynPS/2 Synaptics TouchPad" 1 1 3

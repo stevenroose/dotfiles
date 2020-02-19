@@ -11,5 +11,7 @@ alias rggov="rg -tgo "
 alias rgcpp="rg -tcpp "
 alias rgh="rg -g '*.h' -B 10 "
 alias rgr="rg -trust -g '!target/*' -g '!vendor/*' "
+# ripgrep no ignore
+alias rgi="rg --no-ignore "
 
 alias rtree="tree -I 'target|vendor|test*'"
