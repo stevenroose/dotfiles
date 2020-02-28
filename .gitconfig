@@ -1,19 +1,22 @@
 [user]
-	name = Steven Roose
-	email = steven@stevenroose.org
-	signingkey = 85758DBCF05A48A4DE9EAA127FC91380BB4CE800
+    name = Steven Roose
+    email = steven@stevenroose.org
+    signingkey = 85758DBCF05A48A4DE9EAA127FC91380BB4CE800
 [core]
-	editor = nvim
-	excludesfile = ~/.gitignore-global
+    editor = nvim
+    excludesfile = ~/.gitignore-global
 [color]
-	ui = true
+    ui = true
 [pull]
-	rebase = true
+    rebase = true
 [url "ssh://github.com/"]
-	pushInsteadOf = https://github.com/
-[branch "master"]
-	mergeoptions = --ff-only
+    pushInsteadOf = https://github.com/
+#[branch "master"]
+#   mergeoptions = --ff-only
 [commit]
-	gpgsign = true
+    gpgsign = true
 [tag]
-	gpgsign = true
+    gpgsign = true
+[remote "origin"]
+    fetch = +refs/pull/*/head:refs/remotes/upstream/pr/*
+    fetch = +refs/merge-requests/*/head:refs/remotes/upstream/pr/*
