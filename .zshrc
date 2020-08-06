@@ -8,6 +8,7 @@
 PS1='[\u@\h \W]\$ '
 
 alias glp="git log -p "
+alias gri="git rebase --interactive --autosquash --autostash "
 
 export PATH=$PATH:/home/steven/.local/bin
 
@@ -38,15 +39,11 @@ function checkoutpr() {
 	git fetch -f origin pull/$1/head:pr$1
 	git checkout pr$1
 }
-alias amenddate="git commit --amend --date=\"$(date -R)\""
+alias amenddate="git commit --amend --date=\"\$(date -R)\""
 alias recentbranches="git branch --sort=committerdate | tail"
 
 # SSH
 #ssh-agent zsh
-
-# Blockstream
-export GDK_LOCATION=/home/steven/blockstream/gdk
-export GDK_TARGET=build-clang
 
 # kubernetes
 export KUBE_EDITOR="nano"
@@ -164,6 +161,31 @@ source ~/.bash_completion.d/*
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #export FZF_CTRL_R_OPTS='--no-sort'
+
+
+# Blockstream
+export GDK_LOCATION=/home/steven/blockstream/gdk
+export GDK_TARGET=build-clang
+
+# Some Blockstream utils
+function bs_less() {
+    jq -c '{time: .time, severity: .severity, name: .name, data: .data, id: .log_id}'
+}
+function bs_code() {
+    jq -c "select(.log_id | startswith(\"$1\"))" 
+}
+function bs_hr() {
+    jq -r '"\(.time[0:19])  \(if .severity == "info" or .severity == "warn" then " " else "" end)\(.severity | ascii_upcase): \(if .log_id | startswith("L-000") then .data.message else "[\(.log_id)|\(.name)] \(.desc): \(.data)" end)"'
+}
+function bs_warn() {
+    jq -c 'select(.severity == "error" or .severity == "warn")'
+}
+function bs_info() {
+    jq -c 'select(.severity == "error" or .severity == "warn" or .severity == "info")'
+}
+function bs_debug() {
+    jq -c 'select(.severity == "error" or .severity == "warn" or .severity == "info" or .severity == "debug")'
+}
 
 
 # Print todos to reduce procrastination.
